@@ -4,7 +4,7 @@ return array(
     'name' => 'Логотип категории',
     'description' => 'Плагин позволяет добавить логотип категории',
     'vendor' => '985310',
-    'version' => '1.0.0',
+    'version' => '1.0.1',
     'img' => 'img/logocategory.png',
     'shop_settings' => true,
     'frontend' => true,

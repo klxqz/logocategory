@@ -3,14 +3,11 @@
 return array(
     'name' => 'Логотип категории',
     'description' => 'Плагин позволяет добавить логотип категории',
-    'vendor' => '985310',
-    'version' => '1.0.1',
+    'vendor' => 903438,
+    'version' => '1.0.2',
     'img' => 'img/logocategory.png',
     'shop_settings' => true,
     'frontend' => true,
-    'icons' => array(
-        16 => 'img/logocategory.png',
-    ),
     'handlers' => array(
         'backend_category_dialog' => 'backendCategoryDialog',
         'backend_products' => 'backendProducts',

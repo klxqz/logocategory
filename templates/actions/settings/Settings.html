@@ -1,81 +1,80 @@
-
 <h1>Логотип категории</h1>
 <div     class="fields form">
     <form action="?module=plugins&id=logocategory&action=save" method="post" id="plugins-settings-form">
-    {$wa->csrf()}
+        {$wa->csrf()}
 
-    <p class="gray">
-    <i class="icon16 exclamation"></i>
-    Внимание! По умолчанию плагин выводит изображение категории в стандартном месте. Если стандартный вывод в вашей теме смотриться некрасиво, тогда вы легко можете отключить стандартный вывод и настроить вывод изображения вручную.<br />
-    Для этого в редакторе дизаяна отредактируйте файл catagory.html, добавьте в нужное место:    
-    </p>
-    <p class="gray">{literal}&lt;img src="{shopLogocategoryPlugin::getImgUrl($category.id)}" /&gt;{/literal}<br />
-     $category.id -  переменная, в которой содержится идентификатор категории
-    </p>
-
-    
-    <div class="field">
-        <div class="name">
-            Статус
-        </div>
-        <div class="value">
-            <select name="shop_logocategory[status]">
-                <option {if $settings.status==1} selected=""{/if} value="1">Включен</option>
-                <option {if $settings.status==0} selected=""{/if} value="0">Выключен</option>
-            </select>
-        </div>
-    </div>
+        <p class="gray">
+            <i class="icon16 exclamation"></i>
+            Внимание! По умолчанию плагин выводит изображение категории в стандартном месте. Если стандартный вывод в вашей теме смотриться некрасиво, тогда вы легко можете отключить стандартный вывод и настроить вывод изображения вручную.<br />
+            Для этого в редакторе дизаяна отредактируйте файл catagory.html, добавьте в нужное место:    
+        </p>
+        <p class="gray">{literal}&lt;img src="{shopLogocategoryPlugin::getImgUrl($category.id)}" /&gt;{/literal}<br />
+            $category.id -  переменная, в которой содержится идентификатор категории
+        </p>
 
 
-    <div class="field">
-        <div class="name">
-            Масштабирование
+        <div class="field">
+            <div class="name">
+                Статус
+            </div>
+            <div class="value">
+                <select name="shop_logocategory[status]">
+                    <option {if $settings.status==1} selected=""{/if} value="1">Включен</option>
+                    <option {if $settings.status==0} selected=""{/if} value="0">Выключен</option>
+                </select>
+            </div>
         </div>
-        <div class="value">
-            <select name="shop_logocategory[resize]">
-                <option {if $settings.resize==1} selected=""{/if} value="1">Включен</option>
-                <option {if $settings.resize==0} selected=""{/if} value="0">Выключен</option>
-            </select>
-            <p class="hint">Изменение рамеров исходного изображения</p>
-        </div>
-    </div>
 
-    
-    <div class="field">
-        <div class="name">
-            Размер изображения(в пикселях)
-        </div>
-        <div class="value">
-            <input type="text" name="shop_logocategory[size]" value="{$settings.size|escape}"  />
-            <p class="hint">Размер изображения при масштабирование, изображение вписывается в квадрат заданных размеров </p>
-        </div>
-    </div>
-    
-    <div class="field">
-        <div class="name">
-            Стандартный вывод изображения 
-        </div>
-        <div class="value">
-            <select name="shop_logocategory[default_output]">
-                <option {if $settings.default_output==1} selected=""{/if} value="1">Включен</option>
-                <option {if $settings.default_output==0} selected=""{/if} value="0">Выключен</option>
-            </select>
-            <p class="hint">Если стандартный вывод изображения не вписывается в ваш дизайн, вы можете отключить его и в ручную в шаблон catagory.html добавить </p>
-        </div>
-    </div>
 
-    
+        <div class="field">
+            <div class="name">
+                Масштабирование
+            </div>
+            <div class="value">
+                <select name="shop_logocategory[resize]">
+                    <option {if $settings.resize==1} selected=""{/if} value="1">Включен</option>
+                    <option {if $settings.resize==0} selected=""{/if} value="0">Выключен</option>
+                </select>
+                <p class="hint">Изменение рамеров исходного изображения</p>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <div class="name">
+                Размер изображения(в пикселях)
+            </div>
+            <div class="value">
+                <input type="text" name="shop_logocategory[size]" value="{$settings.size|escape}"  />
+                <p class="hint">Размер изображения при масштабирование, изображение вписывается в квадрат заданных размеров </p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Стандартный вывод изображения 
+            </div>
+            <div class="value">
+                <select name="shop_logocategory[default_output]">
+                    <option {if $settings.default_output==1} selected=""{/if} value="1">Включен</option>
+                    <option {if $settings.default_output==0} selected=""{/if} value="0">Выключен</option>
+                </select>
+                <p class="hint">Если стандартный вывод изображения не вписывается в ваш дизайн, вы можете отключить его и в ручную в шаблон catagory.html добавить </p>
+            </div>
+        </div>
 
 
 
-    <div class="field">
-        <div class="value submit">
-            <input type="submit" class="button green" value="Сохранить">
-            <span id="plugins-settings-form-status" style="display:none">
-                <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
-            </span>
+
+
+        <div class="field">
+            <div class="value submit">
+                <input type="submit" class="button green" value="Сохранить">
+                <span id="plugins-settings-form-status" style="display:none">
+                    <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
+                </span>
+            </div>
         </div>
-    </div>
     </form>
 </div>
 

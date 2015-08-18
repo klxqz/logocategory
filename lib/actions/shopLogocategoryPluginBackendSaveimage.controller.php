@@ -1,54 +1,51 @@
 <?php
 
-class shopLogocategoryPluginBackendSaveimageController extends waJsonController 
-{
-    public function execute()
-    {
-       $file = waRequest::file('logocategory');
-       $category_id = waRequest::post('category_id');
-        if($file->uploaded()) {
-            $image_path = wa()->getDataPath('plugins/logocategory/images/',  'shop');
-            $name = $this->uniqueName($image_path);
+class shopLogocategoryPluginBackendSaveimageController extends waJsonController {
+
+    public function execute() {
+        $file = waRequest::file('logocategory');
+        $category_id = waRequest::post('category_id');
+        if ($file->uploaded()) {
+            $image_path = wa()->getDataPath('plugins/logocategory/images/', 'shop');
+            $path_info = pathinfo($file->name);
+            $name = $this->uniqueName($image_path, $path_info['extension']);
             $app_settings_model = new waAppSettingsModel();
-            $size = $app_settings_model->get(array('shop', 'logocategory'),'size');
-            $resize = $app_settings_model->get(array('shop', 'logocategory'),'resize');
+            $size = $app_settings_model->get(array('shop', 'logocategory'), 'size');
+            $resize = $app_settings_model->get(array('shop', 'logocategory'), 'resize');
             try {
-                if($resize) {
-                    $file->waImage()->resize($size,$size)->save($image_path.$name);
+                if ($resize) {
+                    $file->waImage()->resize($size, $size)->save($image_path . $name);
                 } else {
-                    $file->waImage()->save($image_path.$name);
+                    $file->waImage()->save($image_path . $name);
                 }
-                
-                $this->response['preview'] = wa()->getDataUrl('plugins/logocategory/images/'.$name, true, 'shop');
-              
+
+                $this->response['preview'] = wa()->getDataUrl('plugins/logocategory/images/' . $name, true, 'shop');
+
                 $category_model = new shopCategoryModel();
                 $category = $category_model->getById($category_id);
-                if($category['image']) {
-                    @unlink($image_path.$category['image']);
+                if ($category['image']) {
+                    @unlink($image_path . $category['image']);
                 }
-                $category_model->updateById($category_id,array('image'=>$name));
-              
-              
-              
+                $category_model->updateById($category_id, array('image' => $name));
             } catch (Exception $e) {
-                
+
                 $this->setError($e->getMessage());
             }
         }
     }
-    
-    protected function uniqueName($path) 
-    {
+
+    protected function uniqueName($path, $extension) {
         $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
         do {
             $name = '';
             for ($i = 0; $i < 10; $i++) {
-                $n = rand(0, strlen($alphabet)-1);
+                $n = rand(0, strlen($alphabet) - 1);
                 $name .= $alphabet{$n};
             }
-            $name .= '.jpg';
-        } while(file_exists($path.$name));
-        
+            $name .= '.' . $extension;
+        } while (file_exists($path . $name));
+
         return $name;
     }
+
 }

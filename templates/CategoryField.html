@@ -1,25 +1,28 @@
+<style>
+    .fileinput-button{ overflow: hidden; display: inline-block; float: left; }
+    #deleteButton{ display: inline-block; float: left; }
+</style>
 <div class="field">
-<div class="name">Логотип</div>
-<div class="value no-shift">
+    <div class="name">Логотип</div>
+    <div class="value no-shift">
+        <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/fileupload/jquery.iframe-transport.js"></script>
+        <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/fileupload/jquery.fileupload.js"></script>
+        <script type="text/javascript" src="{$wa_app_static_url}plugins/logocategory/js/script.js"></script>
 
-<script type="text/javascript" src="{$wa_app_static_url}plugins/logocategory/js/ajaxupload.js"></script>
-<script type="text/javascript" src="{$wa_app_static_url}plugins/logocategory/js/script.js"></script>
+        <div id="preview">
+            {if $category.image}
+            <img src="{$wa_url}wa-data/public/shop/plugins/logocategory/images/{$category.image}" />
+            {/if}
+        </div>
 
-<div id="preview">
-{if $category.image}
-<img src="{$wa_url}wa-data/public/shop/plugins/logocategory/images/{$category.image}" />
-{/if}
-</div>
+        <a class="fileinput-button" href="javascript:void(0);">
+            <i class="icon16 add"></i>
+            <input class="fileupload" type="file" name="logocategory">
+        </a>
 
-<a id="uploadButton" href="javascript:void(0);"><i  class="icon16 add" title="Загрузить"></i></a>
+        <a id="deleteButton" {if !$category.image}style="display:none;"{/if} href="javascript:void(0);"><i class="icon16 delete" title="Удалить"></i></a>
+        <div id="response"></div>
+        <input type="hidden" name="category_id" value="{$category.id}" />
 
-
-<a id="deleteButton" {if !$category.image}style="display:none;"{/if} href="javascript:void(0);"><i class="icon16 delete" title="Удалить"></i></a>
-
-
-
-<div id="response"></div>
-<input type="hidden" name="category_id" value="{$category.id}" />
-
-</div>
+    </div>
 </div>
